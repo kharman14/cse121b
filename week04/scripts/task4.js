@@ -95,7 +95,7 @@ profile.placesLived.forEach( item => {
     dt.textContent = item.place;
 
     let dd = document.createElement('dd');
-    dd.textContent = item.length;
+    dd.textContent = `${item.length} years`;
 
     dt.appendChild(dd);
     document.querySelector('#places-lived').appendChild(dt);
