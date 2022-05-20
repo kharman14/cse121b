@@ -153,6 +153,13 @@ const sortBy = () => {
                     const myArray2 = templeDate2.split(' ');
                     let temple2Year = myArray2[2];
 
+                    if (templeDate1 == 'Renovation') {
+                        temple1Year = 2022;
+                    }
+                    if (templeDate2 == 'Renovation') {
+                        temple2Year = 2022;
+                    }
+
                     if (temple1Year < temple2Year) return -1;
                     else if (temple1Year > temple2Year) return 1;
                     else return 0;
