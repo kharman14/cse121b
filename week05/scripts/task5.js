@@ -56,7 +56,7 @@ document.getElementById('message2').textContent = message2;
 
 /* FETCH */
 // Step 1: Declare a global empty array variable to store a list of temples
-let templeList = [];
+//let templeList = [];
 
 // Step 2: Declare a function named output that accepts a list of temples as an array argument and does the following for each temple:
 // - Creates an HTML <article> element
@@ -67,7 +67,7 @@ let templeList = [];
 // - Appends the <h3> element, the two <h4> elements, and the <img> element to the <article> element as children
 // - Appends the <article> element to the HTML element with an ID of temples
 const output = (temples) => {
-    temples.forEach(temple => {
+    temples.forEach((temple) => {
             let article = document.createElement('article');
 
             let templeName = document.createElement('h3');
@@ -76,7 +76,7 @@ const output = (temples) => {
             let location = document.createElement('h4');
             location.textContent = temple.location;
 
-            let dedicated = documnet.createElement('h4');
+            let dedicated = document.createElement('h4');
             dedicated.textContent = temple.dedicated;
 
             let img = document.createElement('img');
@@ -96,19 +96,10 @@ const output = (temples) => {
 // Step 4: In the function, using the built-in fetch method, call this absolute URL: 'https://byui-cse.github.io/cse121b-course/week05/temples.json'. Create a variable to hold the response from your fetch. You should have the program wait on this line until it finishes.
 // Step 5: Convert your fetch response into a Javascript object ( hint: .json() ). Store this in the templeList variable you declared earlier (Step 1). Make sure the the execution of the code waits here as well until it finishes.
 // Step 6: Finally, call the output function and pass it the list of temples. Execute your getTemples function to make sure it works correctly.
-//const url = 'https://byui-cse.github.io/cse121b-course/week05/temples.json';
-//let results = null;
-
-//async function getTemples(url) {
-//    const response = await fetch(url);
-//    if (response.ok) {
-//        templeList = await response.json();
-//        output(templeList);
-//    }
-//};
-
 const getTemples = async () => {
-    const response = await fetch ('https://byui-cse.github.io/cse121b-course/week05/temples.json')
+    const response = await fetch (
+        'https://byui-cse.github.io/cse121b-course/week05/temples.json'
+        );
     templeList = await response.json();
     output(templeList);
 };
@@ -125,7 +116,7 @@ const reset = () => {
 // - Calls the output function passing in the sorted list of temples
 const sortBy = () => {
     reset();
-    let filter = document.getElementById('sortBy').ariaValueMax;
+    let filter = document.getElementById('sortBy').value;
 
     switch (filter) {
         case 'templeNameAscending':
@@ -153,10 +144,17 @@ const sortBy = () => {
         case 'templeYearDedicated':
             output(
                 templeList.sort((temple1, temple2) => {
-                    let templeName1 = temple1.dedicated.getYear();
-                    let templeName2 = temple2.dedicated.getYear();
-                    if (templeName1 < templeName2) return -1;
-                    else if (templeName1 > templeName2) return 1;
+
+                    let templeDate1 = temple1.dedicated;
+                    const myArray1 = templeDate1.split(' ');
+                    let temple1Year = myArray1[2];
+
+                    let templeDate2 = temple2.dedicated;
+                    const myArray2 = templeDate2.split(' ');
+                    let temple2Year = myArray2[2];
+
+                    if (temple1Year < temple2Year) return -1;
+                    else if (temple1Year > temple2Year) return 1;
                     else return 0;
                 })
             );
