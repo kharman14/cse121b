@@ -7,8 +7,8 @@ const search_term = document.querySelector('#keyword');
 const btn = document.querySelector('button');
 
 btn.addEventListener('click', () => {
-    query = keyword.value;
-    let url = `${baseURL}?q=${search_term}&access_token=${client_access_token}`;
+    query = search_term.value;
+    let url = `${baseURL}?q=${query}&access_token=${client_access_token}`;
     findSong(url);
 });
 
@@ -16,6 +16,7 @@ async function findSong(URL) {
     let response = await fetch(URL)
     if (response.ok) {
         let data = await response.json();
+        //console.log(data);
         displayResults(data);
     }
 }
@@ -30,13 +31,11 @@ const displayResults = (data) => {
     data.response.hits.forEach(hit => {
         let article = document.createElement('article');
         let h3 = document.createElement('h3');
-        h3.textContent = hit.result.full_title;
+
+        let fullTitle = hit.result.title;
+        h3.textContent = fullTitle;
         article.appendChild(h3);
         main.append(article);
     });
 
 }
-
-//how to loop through in python: 
-//    for song in json_data['response']['hits']:
-//    print(song['result']['full_title'])
