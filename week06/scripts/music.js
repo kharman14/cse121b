@@ -1,7 +1,7 @@
 // Client ID: '88abukBLBetl4Yk8Yy9lgM-jKAVi7duiHo6H_ZBc32fp3j78xi8uMOaDOb8wZW3X'
 
 baseURL = 'http://api.genius.com/search';
-client_access_token = 'j_Y0HeKetbSUtGgyqyQXQFEPN-4zvXq4cUN0B-5xVjFqGXu5R9rW54IS2DXhq9BK';
+client_access_token = 'Pz0sqNcvHMbUXdVhhkmI2FqlHN36whh8mqt9h-JwG6PcwPlyvMj-8TYEVz0iMX2u';
 
 const search_term = document.querySelector('#keyword');
 const btn = document.querySelector('button');
