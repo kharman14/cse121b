@@ -26,12 +26,12 @@ const displayResults = (data) => {
     let aside = document.createElement('aside');
     aside.textContent = `Songs by ${query}:`;
     main.append(aside);
-
-    data.response.hits[0].result.forEach(song => {
+    
+    data.response.hits.forEach(hit => {
         let article = document.createElement('article');
         let h3 = document.createElement('h3');
-        h3.textContent = song.full_title;
-        article.append(h3);
+        h3.textContent = hit.result.full_title;
+        article.appendChild(h3);
         main.append(article);
     });
 
